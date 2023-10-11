@@ -8,7 +8,6 @@ var jwt = require('jsonwebtoken');
 const dotenv=require('dotenv')
 dotenv.config();
 const JWT_SECRET=process.env.JWT_SECRET;
-
 router.post(
   "/createuser",
   [
@@ -50,10 +49,7 @@ router.post(
     }
   }
 );
-
-
 // LOGIN
-
 router.post("/login",
 [
   body("email", "Enter a valid email").isEmail(),
@@ -63,9 +59,7 @@ router.post("/login",
     if (!errors.isEmpty()) {
       return res.json({ errors: errors.array() });
     }
-
     const {email,password}=req.body;
-
     try {
         let user = await User.findOne({email});
         if(!user){
@@ -91,10 +85,7 @@ router.post("/login",
     }
 
 })
-
-
 // get details
-
 router.post("/getuser",fetchUser,async (req, res) => {
   try {
   userId=req.user.id
